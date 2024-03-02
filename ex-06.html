@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Endereço por CEP</title>
+</head>
+<body>
+  <h1>Consulta de Endereço por CEP</h1>
+  <label for="cepInput">Digite o CEP:</label>
+  <input type="text" id="cepInput" placeholder="Digite o CEP...">
+  <button onclick="buscarEndereco()">Buscar</button>
+  
+  <script>
+    async function buscarEndereco() {
+      const cep = document.getElementById('cepInput').value;
+      const url = `https://viacep.com.br/ws/${cep}/json`;
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (response.ok) {
+          const enderecoFormatado = `${data.logradouro}, ${data.complemento ? data.complemento + ' - ' : ''}${data.bairro} - ${data.localidade}/${data.uf}`;
+          alert(enderecoFormatado);
+        } else {
+          alert('CEP não encontrado. Verifique se o CEP está correto e tente novamente.');
+        }
+      } catch (error) {
+        console.error('Erro ao buscar o endereço:', error);
+        alert('Ocorreu um erro ao buscar o endereço. Por favor, tente novamente mais tarde.');
+      }
+    }
+  </script>
+</body>
+</html>

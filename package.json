@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "ansi-regex": "^6.0.1",
+    "axios": "^1.6.7",
+    "node-fetch": "^3.3.2",
+    "prompt-sync": "^4.2.0",
+    "strip-ansi": "^7.1.0"
+  }
+}
